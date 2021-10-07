@@ -1,11 +1,11 @@
 <template>
-  <div class="card-container">
+  <NuxtLink :to="`/products/${card.id}`" class="card-container">
     <img
       :src="require(`@/assets/images/${card.image}`)"
       :alt="`Extinguisher ${card.id}`"
       class="image"
     />
-  </div>
+  </NuxtLink>
 </template>
 
 <script lang="ts">
@@ -26,6 +26,11 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .card-container {
   width: 24%;
   height: 12.5rem;

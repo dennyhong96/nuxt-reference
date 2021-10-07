@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <NuxtLink :to="`/products/${card.id}`" class="card">
     <img
       :src="require(`@/assets/images/${card.image}`)"
       :alt="card.title"
@@ -7,7 +7,7 @@
     />
     <h3 class="header">{{ card.title }}</h3>
     <p class="snippet">{{ card.snippet }}</p>
-  </div>
+  </NuxtLink>
 </template>
 
 <script lang="ts">
@@ -28,6 +28,11 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .card {
   width: 31.5%;
   height: 25rem;
