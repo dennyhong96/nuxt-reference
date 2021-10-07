@@ -13,17 +13,19 @@
           </p>
         </div>
 
-        <vc-date-picker :value="null" color="indigo" is-dark is-range />
+        <vc-date-picker v-model="dateRange" color="indigo" is-dark is-range />
       </div>
 
-      <b-button variant="outline-danger">Order</b-button>
+      <b-button variant="outline-danger" @click="handleRent">Order</b-button>
     </b-modal>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { Product } from '~/store';
+import { mapMutations } from 'vuex';
+
+import { Product } from '@/store';
 
 export default Vue.extend({
   props: {
@@ -33,22 +35,39 @@ export default Vue.extend({
     },
   },
 
+  data() {
+    return {
+      dateRange: {
+        start: new Date(),
+        end: new Date(),
+      },
+    };
+  },
+
   methods: {
+    ...mapMutations(['rent']),
+
     showModal() {
       // @ts-ignore
       this.$refs['my-modal'].show();
     },
-    // hideModal() {
-    //   // @ts-ignore
-    //   this.$refs['my-modal'].hide();
-    // },
-    // toggleModal() {
-    //   // We pass the ID of the button that we want to return focus to
-    //   // when the modal has hidden
 
-    //   // @ts-ignore
-    //   this.$refs['my-modal'].toggle('#toggle-btn');
-    // },
+    hideModal() {
+      // @ts-ignore
+      this.$refs['my-modal'].hide();
+    },
+
+    handleRent() {
+      this.rent({
+        productId: this.product.id,
+        dateRange: this.dateRange,
+      });
+      this.hideModal();
+      this.dateRange = {
+        start: new Date(),
+        end: new Date(),
+      };
+    },
   },
 });
 </script>
