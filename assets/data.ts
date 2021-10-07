@@ -57,7 +57,7 @@ export const largeCardSections = [
       },
     ],
   },
-]
+];
 
 export const smallCardSections = [
   {
@@ -168,4 +168,4 @@ export const smallCardSections = [
       },
     ],
   },
-]
+];
