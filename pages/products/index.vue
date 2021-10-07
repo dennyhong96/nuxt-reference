@@ -1,10 +1,7 @@
 <template>
-  <div>
-    <Nav />
-    <div class="container">
-      <LargeCardDisplay :cardSection="largeCardSections[0]" />
-      <SmallCardDisplay :cardSection="smallCardSections[0]" />
-    </div>
+  <div class="container">
+    <LargeCardDisplay :cardSection="largeCardSections[0]" />
+    <SmallCardDisplay :cardSection="smallCardSections[0]" />
   </div>
 </template>
 

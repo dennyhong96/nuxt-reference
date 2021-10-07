@@ -1,22 +1,18 @@
 <template>
-  <div>
-    <Nav />
+  <div class="container">
+    <Hero />
 
-    <div class="container">
-      <Hero />
+    <LargeCardDisplay
+      v-for="largeCardSection in largeCardSections"
+      :key="largeCardSection.id"
+      :cardSection="largeCardSection"
+    />
 
-      <LargeCardDisplay
-        v-for="largeCardSection in largeCardSections"
-        :key="largeCardSection.id"
-        :cardSection="largeCardSection"
-      />
-
-      <SmallCardDisplay
-        v-for="smallCardSection in smallCardSections"
-        :key="smallCardSection.id"
-        :cardSection="smallCardSection"
-      />
-    </div>
+    <SmallCardDisplay
+      v-for="smallCardSection in smallCardSections"
+      :key="smallCardSection.id"
+      :cardSection="smallCardSection"
+    />
   </div>
 </template>
 
