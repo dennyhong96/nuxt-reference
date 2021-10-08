@@ -1,6 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark padding">
-    <NuxtLink class="navbar-brand" to="/">Firengii</NuxtLink>
+    <NuxtLink class="navbar-brand" to="/" exact-active-class="no-active-styles"
+      >Firengii</NuxtLink
+    >
     <button
       class="navbar-toggler"
       type="button"
@@ -43,5 +45,9 @@ export default Vue.extend({});
 }
 .nav-left {
   margin-left: auto;
+}
+
+.nuxt-link-exact-active {
+  color: rgb(231, 81, 43) !important;
 }
 </style>

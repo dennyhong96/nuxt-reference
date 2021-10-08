@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="wrapper">
     <b-button id="show-btn" @click="showModal">Rent</b-button>
 
     <b-modal ref="my-modal" hide-footer title="Using Component Methods">
@@ -44,6 +44,10 @@ export default Vue.extend({
     };
   },
 
+  mounted() {
+    this.initClientSizeComp();
+  },
+
   methods: {
     ...mapMutations(['rent']),
 
@@ -67,6 +71,16 @@ export default Vue.extend({
         start: new Date(),
         end: new Date(),
       };
+    },
+
+    initClientSizeComp(count = 10) {
+      this.$nextTick(() => {
+        if (this.$refs.wrapper) {
+          console.log('initClientSizeComp', count, this.$refs.wrapper);
+        } else if (count > 0) {
+          this.initClientSizeComp(count - 1);
+        }
+      });
     },
   },
 });

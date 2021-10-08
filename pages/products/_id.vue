@@ -9,7 +9,13 @@
       <div class="info-box">
         <h1>{{ product.title }}</h1>
         <p class="snippet">{{ product.snippet }}</p>
-        <RentModal :product="product" />
+
+        <client-only>
+          <RentModal :product="product" />
+          <template slot="placeholder">
+            <RentModalLoading />
+          </template>
+        </client-only>
       </div>
     </div>
     <div class="whats-included-container">
@@ -57,10 +63,28 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { Product } from '~/store';
 
 export default Vue.extend({
+  head() {
+    return {
+      // @ts-ignore
+      title: `Extinguisher: ${this.product?.title ?? ''}`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `This is the meta description for ${
+            // @ts-ignore
+            this.product?.title ?? ''
+          }`,
+        },
+      ],
+    };
+  },
+
   computed: {
-    product() {
+    product(): Product | undefined {
       return this.$store.getters.productById(Number(this.$route.params.id));
     },
   },

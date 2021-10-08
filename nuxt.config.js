@@ -1,4 +1,6 @@
 export default {
+  target: 'server', // default is 'server'
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'fire',
@@ -15,7 +17,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['@/assets/transition.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -40,6 +42,9 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+
+    // https://content.nuxtjs.org/installation
+    '@nuxt/content',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -47,4 +52,19 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  serverMiddleware: ['@/server-middleware/logger'],
+
+  loading: '@/components/Loading.vue',
+
+  pageTransition: {
+    mode: 'out-in',
+  },
+  layoutTransition: {
+    mode: 'out-in',
+  },
+
+  generate: {
+    subFolders: false,
+  },
 };

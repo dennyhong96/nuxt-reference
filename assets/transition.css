@@ -1,0 +1,22 @@
+.page-enter-active {
+  transition: opacity 0.15s ease-in;
+}
+.page-leave-active {
+  transition: opacity 0.25s ease-out;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
+.layout-enter-active {
+  transition: 0.15s ease-in;
+}
+.layout-leave-active {
+  transition: 0.25s ease-out;
+}
+.layout-enter,
+.layout-leave-active {
+  transform: translateY(-25px);
+  opacity: 0;
+}

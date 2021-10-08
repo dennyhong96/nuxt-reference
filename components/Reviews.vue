@@ -11,6 +11,8 @@
       </div>
       <div v-else>Loading...</div>
     </div>
+
+    <button @click="refresh">Refresh review</button>
   </div>
 </template>
 
@@ -34,6 +36,12 @@ export default Vue.extend({
       reviewContent:
         'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro tempora, neque eos dolore ipsa dolorum quas cumque architecto odio non?',
     }));
+  },
+
+  methods: {
+    refresh() {
+      this.$nuxt.refresh();
+    },
   },
 });
 </script>
