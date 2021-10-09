@@ -45,7 +45,7 @@ export default Vue.extend({
   },
 
   mounted() {
-    this.initClientSizeComp();
+    this.initClientSideComponent();
   },
 
   methods: {
@@ -73,12 +73,12 @@ export default Vue.extend({
       };
     },
 
-    initClientSizeComp(count = 10) {
+    initClientSideComponent(count = 10) {
       this.$nextTick(() => {
         if (this.$refs.wrapper) {
-          console.log('initClientSizeComp', count, this.$refs.wrapper);
+          console.log('initClientSideComponent', count, this.$refs.wrapper);
         } else if (count > 0) {
-          this.initClientSizeComp(count - 1);
+          this.initClientSideComponent(count - 1);
         }
       });
     },

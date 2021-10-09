@@ -17,13 +17,16 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/transition.css'],
+  css: ['@/assets/transition'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {
       src: '@/plugins/vue-calender.ts',
       mode: 'client',
+    },
+    {
+      src: '@/plugins/logger.ts',
     },
   ],
 
@@ -45,7 +48,13 @@ export default {
 
     // https://content.nuxtjs.org/installation
     '@nuxt/content',
+
+    ['@/modules/example', { someOptions: true }],
   ],
+  exampleOptions: {
+    anotherOption: true,
+    yetAnotherOption: true,
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
@@ -54,6 +63,10 @@ export default {
   build: {},
 
   serverMiddleware: ['@/server-middleware/logger'],
+
+  router: {
+    middleware: ['stats'],
+  },
 
   loading: '@/components/Loading.vue',
 
@@ -64,7 +77,7 @@ export default {
     mode: 'out-in',
   },
 
-  generate: {
-    subFolders: false,
+  publicRuntimeConfig: {
+    CUSTOM_VAR: 'customvar12345',
   },
 };

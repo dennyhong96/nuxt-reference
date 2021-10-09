@@ -1,12 +1,20 @@
 <template>
-  <!-- error.vue is rendered when any page errors out -->
   <div class="container">
-    <PageNotFound />
+    <pre>{{ error }}</pre>
+    <h1 v-if="error.statusCode === 404">Page not found</h1>
+    <h1 v-else>An error occurred</h1>
+
+    <NuxtLink to="/">Home page</NuxtLink>
   </div>
 </template>
 
-<style scoped>
-.container {
-  padding: 4rem 0;
-}
-</style>
+<script>
+export default {
+  props: {
+    error: {
+      type: Error,
+      required: true,
+    },
+  },
+};
+</script>

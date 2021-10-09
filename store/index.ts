@@ -1,3 +1,8 @@
+import { Context } from '@nuxt/types';
+import { createLogger } from 'vuex';
+
+export const plugins = [createLogger()];
+
 export interface Product {
   id: number;
   title: string;
@@ -14,12 +19,12 @@ export interface Rental extends Product {
   dateRange: DateRange;
 }
 
-export interface State {
+export interface RootState {
   products: Product[];
   myRentals: Rental[];
 }
 
-export const state = (): State => ({
+export const state = (): RootState => ({
   products: [
     {
       id: 1,
@@ -257,9 +262,12 @@ export const state = (): State => ({
 
 export const mutations = {
   rent(
-    state: State,
+    this: Context,
+    state: RootState,
     { productId, dateRange }: { productId: number; dateRange: DateRange }
   ) {
+    this.$logger('mutations');
+
     const product = state.products.find((p) => p.id === productId);
     if (!product) return;
     state.myRentals.push({
@@ -270,9 +278,23 @@ export const mutations = {
 };
 
 export const getters = {
-  productById(state: State) {
+  productById(state: RootState) {
     return function (id: number) {
       return state.products.find((p) => p.id === id);
     };
+  },
+};
+
+export const actions = {
+  // When mode is universal, Nuxt will call nuxtServerInit with the context from the server-side.
+  // It's useful when we have some data on the server we want to give directly to the client-side.
+
+  // @ts-ignore
+  async nuxtServerInit({ commit }, { req }) {
+    await new Promise((resolve) => {
+      setTimeout(resolve, 1000);
+    });
+
+    console.log('nuxtServerInit - req', req);
   },
 };

@@ -66,6 +66,12 @@ import Vue from 'vue';
 import { Product } from '~/store';
 
 export default Vue.extend({
+  validate({ params }) {
+    // Load 404 page if the params.id is not a number
+    // throw new Error('500 Error!!!');
+    return /^\d+$/i.test(params.id);
+  },
+
   head() {
     return {
       // @ts-ignore

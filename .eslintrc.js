@@ -13,5 +13,7 @@ module.exports = {
   // add your custom rules here
   rules: {
     'vue/attribute-hyphenation': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    'node/handle-callback-err': 'off',
   },
-}
+};
