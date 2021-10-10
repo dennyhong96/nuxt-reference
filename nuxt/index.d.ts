@@ -16,6 +16,7 @@ declare module '@nuxt/types' {
   // nuxtContext.$logger
   interface Context {
     $logger(msg: string): void;
+    $userAgent: string | undefined;
   }
 }
 

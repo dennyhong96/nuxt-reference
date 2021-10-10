@@ -60,24 +60,39 @@ export default {
   axios: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    analyze: true,
+  },
 
-  serverMiddleware: ['@/server-middleware/logger'],
+  serverMiddleware: [
+    '@/server-middleware/logger',
+    // { path: '/server-middleware', handler: '~/server-middleware/lambda' },
+  ],
 
   router: {
-    middleware: ['stats'],
+    middleware: ['stats', 'user-agent'],
   },
 
   loading: '@/components/Loading.vue',
 
   pageTransition: {
+    name: 'page',
     mode: 'out-in',
   },
   layoutTransition: {
+    name: 'layout',
     mode: 'out-in',
   },
 
   publicRuntimeConfig: {
     CUSTOM_VAR: 'customvar12345',
   },
+
+  server: {
+    timing: {
+      total: true,
+    },
+  },
+
+  telemetry: false,
 };

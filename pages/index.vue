@@ -29,8 +29,9 @@ export default Vue.extend({
   //   mode: 'out-in',
   // },
 
-  asyncData({ $logger }) {
+  asyncData({ $logger, $userAgent }) {
     $logger('asyncData');
+    console.log('$userAgent', $userAgent);
     return { renderedOn: process.client ? 'client' : 'server' };
   },
 
@@ -56,6 +57,7 @@ export default Vue.extend({
 
   mounted() {
     console.log(this.$config.CUSTOM_VAR);
+    console.log(this.$config);
     this.$logger('mounted');
   },
 });
